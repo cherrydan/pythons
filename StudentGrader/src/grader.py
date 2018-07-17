@@ -7,6 +7,7 @@ Created on 9 июл. 2018 г.
 и вычисляет процент высших баллов из всех оценок
 
 '''
+#!usr/bin/python3
 
 counter = 0
 totalGrades = 0
@@ -32,5 +33,3 @@ try:
 except ZeroDivisionError:
     res = 0.00
     print('{0:.2f}'.format(res))
-
-

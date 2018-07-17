@@ -3,4 +3,6 @@
 .project
 .pydevproject
 /.metadata
+*.txt
+*.jpg
 
