@@ -4,25 +4,29 @@ Created on 23 июл. 2018 г.
 @author: danny
 
 Программа валидирует номер кредитной карты согласно общепринятому алгоритму Луна
+
 '''
 
+import sys
 def whose_card(CardStr):
 
     if(CardStr[0] == '4'):
-        return "Карта системы VISA "
+        print ("Карта системы VISA ")
     elif (CardStr[0] == '5'):
-        return "Карта системы MASTER CARD "
+        print ("Карта системы MASTER CARD ")
 
     elif (CardStr[0] == '2'):
-        return "Карта системы МИР "
+        print ("Карта системы МИР ")
 
     elif (CardStr[0] == '3'):
-        return "Карта системы AMERICAN EXPRESS "
+        print("Карта системы AMERICAN EXPRESS ")
 
     elif (CardStr[0] == '9'):
-        return "Карта системы ПРОСТIР "
+        print("Карта системы ПРОСТIР ")
     else:
-        return "Карта неизвестной платежной системы, или ошибка в вводе номера карты"
+        print("Карта неизвестной платёжной системы!!! Выход...")
+        sys.exit(0)
+
 
 
 
@@ -77,9 +81,12 @@ def validate_card(CardStr):
 card_str = input('Введите номер банковской карты: ')
 
 if(card_str.isdigit() or len(card_str) == 16):
-    print(whose_card(card_str))
+    whose_card(card_str)
+    
     if(validate_card(card_str)):
-        print("Карта № " + card_str  + " валидна!")
+        print('\t * * * Карта № ' + card_str + ' ВАЛИДНА! * * *\t')
     else:
-        print("Карта № " + card_str  + " НЕ валидна!")
-        
+        print('\t - - - Карта № ' + card_str + ' НЕ ВАЛИДНА! - - -\t')
+else:
+    print('Что-то не так с вводом данных! Допустимый ввод: ЦИФРЫ, количество цифр - 16!')
+    sys.exit(0)
