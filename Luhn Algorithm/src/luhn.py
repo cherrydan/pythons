@@ -74,6 +74,7 @@ def validate_card(CardStr):
 
     else:
         print("Ошибка! В номере кредитной карты должно быть 16 цифр!")
+        sys.exit(0)
 
 
 
@@ -82,7 +83,7 @@ card_str = input('Введите номер банковской карты: ')
 
 if(card_str.isdigit() or len(card_str) == 16):
     whose_card(card_str)
-    
+
     if(validate_card(card_str)):
         print('\t * * * Карта № ' + card_str + ' ВАЛИДНА! * * *\t')
     else:
