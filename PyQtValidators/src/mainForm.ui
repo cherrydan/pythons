@@ -83,7 +83,7 @@
       <string>Credit Card Number</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="leCard">
      <property name="geometry">
       <rect>
        <x>160</x>

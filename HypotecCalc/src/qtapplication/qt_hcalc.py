@@ -20,12 +20,12 @@ def h_calc(ps, sk, m):
     except ZeroDivisionError:
         return -1
 
-def show_error_message():
+
+def show_error_message(text):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Critical)
         msg.setWindowTitle('Критическая ошибка!')
-        msg.setInformativeText('Процент по кредиту не может быть равен 0'
-            )
+        msg.setInformativeText(text)
         msg.exec_()
 
 
@@ -48,7 +48,13 @@ class MyWin(QtWidgets.QWidget):
         m = self.le_Srok.text()
         sk = self.le_Sum.text()
 
-        res = h_calc(float(ps), int(sk), int(m))
+        try:
+
+            res = h_calc(float(ps), int(sk), int(m))
+
+        except ValueError:
+            show_error_message('Нужно заполнить все поля в форме!')
+
 
         if res != -1:
             res = float('{:.2f}'.format(res))
@@ -60,7 +66,7 @@ class MyWin(QtWidgets.QWidget):
             self.le_extraPay.setText(str(extra_pay))
 
         else:
-            show_error_message()
+            show_error_message('Процент по кредиту не может быть равен 0!')
 
 
 
