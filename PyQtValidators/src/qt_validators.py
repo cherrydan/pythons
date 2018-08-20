@@ -69,7 +69,7 @@ def validate_card(CardStr):
 
     else:
         show_error_message('Ошибка! В номере кредитной карты должно быть 16 цифр!')
-        sys.exit(0)
+
 
 
 def validate_EAN(Estr):
@@ -133,6 +133,8 @@ class MyWin(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent) #вызов конструктора базового класса
         uic.loadUi("mainForm.ui", self) #ГРУЗИМ из ui файла в класс MyWin (self)
+        self.btnEANValid.setEnabled(True)
+        self.btnCardValid.setEnabled(True)
         self.btnEANValid.clicked.connect(self.on_EAN_clicked)
         self.btnCardValid.clicked.connect(self.on_Card_clicked)
 
@@ -153,7 +155,7 @@ class MyWin(QtWidgets.QWidget):
 
         else:
             show_error_message('Что-то не так с вводом данных!')
-            sys.exit(0)
+
 
 
 

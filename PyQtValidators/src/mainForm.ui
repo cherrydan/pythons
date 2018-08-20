@@ -23,23 +23,23 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>EAN Code Validator</string>
+     <string>Штрих-код</string>
     </attribute>
     <widget class="QLabel" name="lbl1">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>68</width>
+       <width>81</width>
        <height>17</height>
       </rect>
      </property>
      <property name="text">
-      <string>EAN Code </string>
+      <string>Штрих-код</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="leEAN">
@@ -62,13 +62,13 @@
       </rect>
      </property>
      <property name="text">
-      <string>Validate</string>
+      <string>Проверить</string>
      </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>Credit Card Number Validator</string>
+     <string>Кредитная карта</string>
     </attribute>
     <widget class="QLabel" name="lbl2">
      <property name="geometry">
@@ -80,7 +80,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Credit Card Number</string>
+      <string>Номер кред. карты</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="leCard">
@@ -103,7 +103,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Validate</string>
+      <string>Проверить</string>
      </property>
     </widget>
    </widget>
