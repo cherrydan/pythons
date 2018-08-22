@@ -4,7 +4,7 @@
 #
 #
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 
 class MyWindow(QtWidgets.QWidget):
     def __init__(self, parent = None):
@@ -47,7 +47,3 @@ if __name__ == "__main__":
     window.resize(300, 100)
     window.show()
     sys.exit(app.exec())
-
-
-
-
