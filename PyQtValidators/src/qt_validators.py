@@ -3,6 +3,8 @@ Created on 7 авг. 2018 г.
 
 @author: danny
 '''
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
 from PyQt5 import QtWidgets, uic
 

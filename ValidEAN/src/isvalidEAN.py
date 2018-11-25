@@ -33,6 +33,10 @@ def validate_EAN(Estr):
 
     bothsum = oddmult + evensum
 
+    print(oddsum)
+    print(oddmult)
+    print(bothsum)
+
     checksum = 10 - (bothsum % 10)
 
     if list[12] != checksum:
@@ -53,6 +57,3 @@ else:
         print('Товар со Штрих-код ' + EANStr + ' легален!')
     else:
         print('Товар со Штрих-код ' + EANStr + ' НЕЛЕГАЛЕН!')
-
-
-
