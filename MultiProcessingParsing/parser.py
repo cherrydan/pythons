@@ -6,19 +6,44 @@ import requests
 
 from bs4 import BeautifulSoup
 
-URL = 'https://auto.ria.com/newauto/marka-land-rover/'
+import csv
+
+import subprocess
+
+# base url of cars
+URL = 'https://auto.ria.com/newauto/marka-lexus/'
+
+#short url of cars
 sURL = 'https://auto.ria.com'
 
+# anti-blocking protection
 HEADERS = {'user-agent': 
 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36',
 'accept': '*/*'
 }
 
+#filename for csv-file
+FILE = 'cars.csv'
+
+# function gets html data via requests library
 def get_html(url, params = None):
     r = requests.get(url, headers = HEADERS, params = params)
     return r
 
 
+# function gets number of pages in our query-url
+def get_pages_count(html):
+    soup = BeautifulSoup(html,'html.parser')
+    pagination = soup.find_all('span',class_='mhide')
+    if pagination:
+        return int(pagination[-1].get_text()) # gets last element of pagination array
+    else:
+        return 1
+
+
+
+
+# function fills 'cars' dictionary with data, parsed by Beautiful Soup library
 def get_content(html):
     soup = BeautifulSoup(html,'html.parser')
     items = soup.find_all('div',class_='proposition_area')
@@ -34,7 +59,7 @@ def get_content(html):
 
         cars.append({
             'title': item.find('strong').get_text(strip=True), #strip = обрезает лишние пробелы
-            'price': item.find('span',class_='green bold size18').get_text(strip=True),
+            'usd_price': item.find('span',class_='green bold size18').get_text(strip=True),
             'uah_price': uah_price,
             'link': sURL + item.find('a').get('href'),
             'fuel': item.find('span', class_='size13').get_text(),
@@ -45,16 +70,36 @@ def get_content(html):
 
     return cars
 
-        
+# function saves 'items' to 'path' in csv file        
+def save_file(items, path):
+    with open(path,'w',newline='') as file:
+        writer = csv.writer(file,delimiter=';')
+        writer.writerow(['Марка','Цена в USD','Цена в UAH','Ссылка','Двигатель','Город'])
+
+        for item in items:
+            writer.writerow([item['title'],item['usd_price'],item['uah_price'],item['link'],item['fuel'],item['city']])
 
 
 
 
+
+# function parse() makes test parsing
 def parse():
+    URL = input('Введите URL (наподобие https://auto.ria.com/newauto/marka-acura  > ')
+    URL = URL.strip()
     html = get_html(URL)
-    
+    cars = []
     if html.status_code == 200:
-        print(get_content(html.text))
+        pages_count = get_pages_count(html.text)
+        for page in range(1, pages_count + 1):
+            print(f'Парсинг страницы {page} из {pages_count}...')
+            html = get_html(URL,params={'page':page})
+            cars.extend(get_content(html.text))
+        
+        save_file(cars, FILE)
+        print(f'Получено {len(cars)} автомобилей')
+        subprocess.call(['libreoffice','--calc', FILE])
+
     else:
         print('Error')
 
