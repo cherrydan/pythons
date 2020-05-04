@@ -1,9 +1,12 @@
+#-*- coding: utf-8 -*-
+
 '''
 Created on 28 апр. 2018 г.
 
 @author: danny
 '''
-# -*- coding: utf-8 -*-
+
+
 
 from PyQt5 import QtCore, QtWidgets
 

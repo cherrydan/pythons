@@ -10,6 +10,14 @@ import csv
 
 import subprocess
 
+#for time-checking importing module datetime
+from datetime import datetime
+
+import time
+
+#importing progress-bar drawing library
+from progress.bar import IncrementalBar
+
 # base url of cars
 URL = 'https://auto.ria.com/newauto/marka-lexus/'
 
@@ -48,6 +56,8 @@ def get_content(html):
     soup = BeautifulSoup(html,'html.parser')
     items = soup.find_all('div',class_='proposition_area')
     cars = []
+    
+    bar = IncrementalBar('',max=len(items))
 
     for item in items:
         #print(item)
@@ -67,7 +77,10 @@ def get_content(html):
 
         
             })
+        time.sleep(0.3)
+        bar.next()
 
+    bar.finish()    
     return cars
 
 # function saves 'items' to 'path' in csv file        
@@ -85,19 +98,26 @@ def save_file(items, path):
 
 # function parse() makes test parsing
 def parse():
-    URL = input('Введите URL (наподобие https://auto.ria.com/newauto/marka-acura  > ')
+    URL = input('Введите URL (наподобие https://auto.ria.com/newauto/marka-acura)  > ')
     URL = URL.strip()
+    start_time = datetime.now()
     html = get_html(URL)
     cars = []
     if html.status_code == 200:
         pages_count = get_pages_count(html.text)
         for page in range(1, pages_count + 1):
-            print(f'Парсинг страницы {page} из {pages_count}...')
+            print(f'Парсинг страницы {page} из {pages_count} ')
             html = get_html(URL,params={'page':page})
             cars.extend(get_content(html.text))
         
         save_file(cars, FILE)
         print(f'Получено {len(cars)} автомобилей')
+        elapsed_time = datetime.now() - start_time
+        elapsed_time = elapsed_time.total_seconds()
+        hours = int(elapsed_time // 3600)
+        minutes = int((elapsed_time % 3600) // 60)
+        seconds = int(elapsed_time  % 60)
+        print(f'Затрачено времени: {hours} час {minutes} мин {seconds} сек')
         subprocess.call(['libreoffice','--calc', FILE])
 
     else:
