@@ -1,8 +1,6 @@
-/django_example
-/dronov_static
-.project
-.pydevproject
 /.metadata
 *.txt
 *.jpg
-/__pycache__
+/__pycache_
+*.swp
+_

@@ -56,9 +56,18 @@ def get_pages_count(html):
         return 1
 
 #opens Firefox via geckodriver with link
-def open_link(link):
-    driver = webdriver.Chrome()
-    driver.get(link)
+def get_telephone_number(link):
+    try:
+        driver = webdriver.Chrome()
+        driver.get(link)
+        button = driver.find_element_by_xpath('//span[@class="show-phone-btn dotted"]')
+        button.click()
+        time.sleep(5)
+        driver.save_screenshot('tel_number.png')
+
+    except Exception as err:
+        print(err)
+
 
 
 
@@ -88,6 +97,8 @@ def get_content(html):
 
         
             })
+        # tel_number = get_telephone_number(cars['link'])
+        # cars.append({'telephone':tel_number})
         time.sleep(0.3)
         bar.next()
 
@@ -117,9 +128,8 @@ def parse():
     if html.status_code == 200: 
         cars.extend(get_content(html.text))
         link = cars[-1]['link']
-        open_link(link)
-        time.sleep(10)
-        
+        get_telephone_number(link)
+        time.sleep(10) 
 
     else:
         print('Error')
