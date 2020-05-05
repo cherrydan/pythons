@@ -2,5 +2,7 @@
 *.txt
 *.jpg
 /__pycache_
-*.swp
-_
+//*.swp
+//*.png
+.gitignore
+

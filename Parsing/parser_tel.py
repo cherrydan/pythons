@@ -62,9 +62,10 @@ def get_telephone_number(link):
         driver.get(link)
         button = driver.find_element_by_xpath('//span[@class="show-phone-btn dotted"]')
         button.click()
-        time.sleep(5)
-        driver.save_screenshot('tel_number.png')
-
+        time.sleep(1)
+        # driver.save_screenshot('tel_number.png')
+        phone_number = button.find_element_by_xpath('//a[@class="phone unlink bold proven"]').text
+        return phone_number
     except Exception as err:
         print(err)
 
@@ -78,7 +79,8 @@ def get_content(html):
     cars = []
     
     bar = IncrementalBar('',max=len(items))
-
+    
+    counter = 0
     for item in items:
         #print(item)
         uah_price = item.find('span',class_='grey size13')
@@ -87,18 +89,32 @@ def get_content(html):
         else:
             uah_price = 'Цена в гривнах не определена'
 
-        cars.append({
-            'title': item.find('strong').get_text(strip=True), #strip = обрезает лишние пробелы
-            'usd_price': item.find('span',class_='green bold size18').get_text(strip=True),
-            'uah_price': uah_price,
-            'link': sURL + item.find('a').get('href'),
-            'fuel': item.find('span', class_='size13').get_text(),
-            'city': item.find('svg', class_='svg svg-i16_pin').find_next('strong').get_text(strip=True)
+        title = item.find('strong').get_text(strip=True) #strip = обрезает лишние пробелы
+        usd_price = item.find('span',class_='green bold size18').get_text(strip=True) 
+        link = sURL + item.find('a').get('href')
+        fuel = item.find('span', class_='size13').get_text()
+        city = item.find('svg', class_='svg svg-i16_pin').find_next('strong').get_text(strip=True)
+   
+        tel_number = get_telephone_number(link)
+        if (tel_number):
+            cars.append({
+                'title': title,
+                'usd_price': usd_price,
+                'uah_price': uah_price,
+                'link': link,
+                'fuel': fuel,
+                'city': city,    
+                'telephone': tel_number})
 
-        
-            })
-        # tel_number = get_telephone_number(cars['link'])
-        # cars.append({'telephone':tel_number})
+        else:
+            cars.append({
+                'title': title,
+                'usd_price': usd_price,
+                'uah_price': uah_price,
+                'link': link,
+                'fuel': fuel,
+                'city': city,    
+                'telephone': 'Телефон не указан'})
         time.sleep(0.3)
         bar.next()
 
@@ -109,10 +125,10 @@ def get_content(html):
 def save_file(items, path):
     with open(path,'w',newline='') as file:
         writer = csv.writer(file,delimiter=';')
-        writer.writerow(['Марка','Цена в USD','Цена в UAH','Ссылка','Двигатель','Город'])
+        writer.writerow(['Марка','Цена в USD','Цена в UAH','Ссылка','Двигатель','Город','Телефон'])
 
         for item in items:
-            writer.writerow([item['title'],item['usd_price'],item['uah_price'],item['link'],item['fuel'],item['city']])
+            writer.writerow([item['title'],item['usd_price'],item['uah_price'],item['link'],item['fuel'],item['city'],item['telephone'],])
 
 
 
@@ -127,13 +143,9 @@ def parse():
     cars = []
     if html.status_code == 200: 
         cars.extend(get_content(html.text))
-        link = cars[-1]['link']
-        get_telephone_number(link)
-        time.sleep(10) 
-
+        save_file(cars,'cars.csv')
     else:
         print('Error')
 
 
 parse()
-
