@@ -2,7 +2,7 @@
 *.txt
 *.jpg
 /__pycache_
-/Parser/*.swp
-/Parser/*.png
+/Parsing/*.py.swp
+/Parsing/*.png
 .gitignore
 

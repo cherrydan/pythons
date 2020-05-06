@@ -11,9 +11,6 @@ import subprocess
 #for time-checking importing module datetime
 from datetime import datetime
 
-#module for sleep function
-import time
-
 #importing Beautiful Soup library
 from bs4 import BeautifulSoup
 
@@ -151,7 +148,7 @@ def parse():
         hours = int(elapsed_time // 3600)
         minutes = int((elapsed_time % 3600) // 60)
         seconds = int(elapsed_time % 60)
-        subprocess.call(['libreoffice','--calc',FILE])
+        subprocess.call(['libreoffice', '--calc', FILE])
         print(f'Затрачено времени: {hours} ч {minutes} м {seconds} с ')
     else:
         print('Error')
