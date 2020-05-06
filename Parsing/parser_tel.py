@@ -62,12 +62,15 @@ def get_pages_count(html):
 #finds element with phone number and GET its as text
 #returns phone number
 def get_telephone_number(link):
-    driver = webdriver.Chrome()
+    #попробуем запустить хром в безголовом режиме
+    chrome_options = webdriver.ChromeOptions()
+    #запускаем браузер в безголовом режиме
+    chrome_options.headless = True#
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get(link)
     button = driver.find_element_by_xpath('//span[@class="show-phone-btn dotted"]')
     button.click()
-    time.sleep(1)
-    # driver.save_screenshot('tel_number.png')
+    #time.sleep(1)
     phone_number = button.find_element_by_xpath('//a[@class="phone unlink bold proven"]').text
     return phone_number
 
@@ -79,7 +82,7 @@ def get_telephone_number(link):
 def get_content(html):
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find_all('div', class_='proposition_area')
-    cars = [] 
+    cars = []
     prog_bar = IncrementalBar('', max=len(items))
     for item in items:
         uah_price = item.find('span', class_='grey size13')
@@ -112,8 +115,8 @@ def get_content(html):
                 'link': link,
                 'fuel': fuel,
                 'city': city,    
-                'telephone': 'Телефон не указан'})
-        time.sleep(0.3)
+                'telephone': 'Телефон доступен в рабочие часы'})
+        #time.sleep(0.3)
         prog_bar.next()
     prog_bar.finish()    
     return cars
@@ -136,8 +139,11 @@ def parse():
     start_time = datetime.now()
     html = get_html(url)
     cars = []
-    if html.status_code == 200: 
-        cars.extend(get_content(html.text))
+    if html.status_code == 200:
+        pages_count = get_pages_count(html.text)
+        for page in range(1, pages_count +1):
+            print(f'Парсинг страницы {page} из {pages_count}')
+            cars.extend(get_content(html.text))
         save_file(cars, 'cars.csv')
         print(f'Получено {len(cars)} автомобилей.')
         elapsed_time = datetime.now() - start_time
@@ -145,6 +151,7 @@ def parse():
         hours = int(elapsed_time // 3600)
         minutes = int((elapsed_time % 3600) // 60)
         seconds = int(elapsed_time % 60)
+        subprocess.call(['libreoffice','--calc',FILE])
         print(f'Затрачено времени: {hours} ч {minutes} м {seconds} с ')
     else:
         print('Error')
