@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+'''
+
+Parser for site auto.ria.com, new auto
+title, usd_price, uah_price, link, fuel, telephone
+'''
 
 
 #module for make csv file
@@ -36,29 +41,33 @@ HEADERS = {'user-agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/53
 
 #filename for csv-file
 FILE = 'cars.csv'
-
-# function gets html data via requests library
 def get_html(url, params=None):
+    """
+    get_html(url, params=None) returns a request-obj giving url and params
+    """
     request = requests.get(url, headers=HEADERS, params=params)
     return request
 
-
-# function gets number of pages in our query-url
 def get_pages_count(html):
+    """
+    Use BEAUTIFUL SOUP
+    get_pages_count(html) returns number of pages with car information
+    needs html-text data
+    """
     soup = BeautifulSoup(html, 'html.parser')
     pagination = soup.find_all('span', class_='mhide')
     if pagination:
         return int(pagination[-1].get_text()) # gets last element of pagination array
-
     return 1
 
-###SELENIUM
-#opens Chrome via chromedriver  with link
-#finds 'show phone number' button
-#emulates button click
-#finds element with phone number and GET its as text
-#returns phone number
 def get_telephone_number(link):
+    """
+    Use SELENIUM automation
+    get_telephone_number needs link to one page with detailed car information
+    runs Chome with chromedriver (needs to be in system), then find button with telephone number
+    clicks on it, and grab the telefone number as text
+    returns text-object
+    """
     #попробуем запустить хром в безголовом режиме
     chrome_options = webdriver.ChromeOptions()
     #запускаем браузер в безголовом режиме
@@ -71,12 +80,12 @@ def get_telephone_number(link):
     phone_number = button.find_element_by_xpath('//a[@class="phone unlink bold proven"]').text
     return phone_number
 
-
-
-### BEAUTIFUL SOUP
-# function fills 'cars' dictionary with data, parsed by Beautiful Soup library
-# and with get_telephone_number function
 def get_content(html):
+    """
+    Use Beautiful soup again
+    get_content(html) gets all content inc. telephone number
+    return dictionary with all data
+    """
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find_all('div', class_='proposition_area')
     cars = []
@@ -89,7 +98,7 @@ def get_content(html):
             uah_price = 'Цена в гривнах не определена'
 
         title = item.find('strong').get_text(strip=True) #strip = обрезает лишние пробелы
-        usd_price = item.find('span', class_='green bold size18').get_text(strip=True) 
+        usd_price = item.find('span', class_='green bold size18').get_text(strip=True)
         link = S_URL + item.find('a').get('href')
         fuel = item.find('span', class_='size13').get_text()
         city = item.find('svg', class_='svg svg-i16_pin').find_next('strong').get_text(strip=True)
@@ -101,7 +110,7 @@ def get_content(html):
                 'uah_price': uah_price,
                 'link': link,
                 'fuel': fuel,
-                'city': city,    
+                'city': city,
                 'telephone': tel_number})
 
         else:
@@ -111,26 +120,29 @@ def get_content(html):
                 'uah_price': uah_price,
                 'link': link,
                 'fuel': fuel,
-                'city': city,    
+                'city': city,
                 'telephone': 'Телефон доступен в рабочие часы'})
-        #time.sleep(0.3)
         prog_bar.next()
-    prog_bar.finish()    
+    prog_bar.finish()
     return cars
 
-# function saves 'items' to 'path' in csv file        
 def save_file(items, path):
+    """
+    save_file save all data from dictionary to csv-file format
+    """
     with open(path, 'w', newline='') as file:
         writer = csv.writer(file, delimiter=';')
-        writer.writerow(['Марка', 'Цена в USD', 'Цена в UAH', 'Ссылка', 
+        writer.writerow(['Марка', 'Цена в USD', 'Цена в UAH', 'Ссылка',
                          'Двигатель', 'Город', 'Телефон'])
 
         for item in items:
-            writer.writerow([item['title'], item['usd_price'], item['uah_price'], 
+            writer.writerow([item['title'], item['usd_price'], item['uah_price'],
                              item['link'], item['fuel'], item['city'], item['telephone'],])
 
-# function parse() makes test parsing
 def parse():
+    """
+    parse() is main function analog, doing all
+    """
     url = input('Введите URL (наподобие https://auto.ria.com/newauto/marka-acura)  > ')
     url = url.strip()
     start_time = datetime.now()
@@ -148,10 +160,9 @@ def parse():
         hours = int(elapsed_time // 3600)
         minutes = int((elapsed_time % 3600) // 60)
         seconds = int(elapsed_time % 60)
-        subprocess.call(['libreoffice', '--calc', FILE])
         print(f'Затрачено времени: {hours} ч {minutes} м {seconds} с ')
+        subprocess.call(['libreoffice', '--calc', FILE])
     else:
         print('Error')
-
 
 parse()

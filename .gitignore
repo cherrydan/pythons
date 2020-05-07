@@ -4,5 +4,6 @@
 /__pycache_
 /Parsing/*.py.swp
 /Parsing/*.png
+/Beersong/*.py.swp
 .gitignore
 
