@@ -135,9 +135,9 @@ def save_file(items, path):
         writer.writerow(['Марка', 'Цена в USD', 'Цена в UAH', 'Ссылка',
                          'Двигатель', 'Город', 'Телефон'])
 
-    for item in items:
-        writer.writerow([item['title'], item['usd_price'], item['uah_price'],
-                item['link'], item['fuel'], item['city'], item['telephone'],])
+        for item in items:
+            writer.writerow([item['title'], item['usd_price'], item['uah_price'],
+                             item['link'], item['fuel'], item['city'], item['telephone'],])
 
 def parse():
     """
