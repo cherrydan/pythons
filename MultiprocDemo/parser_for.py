@@ -86,18 +86,14 @@ def write_csv(items):
 
 
 
-def make_all(url):
-    data = []
-    html = get_html(url)
-    print('Парсим страницу...')
-    data.extend(get_page_data(html))
-    write_csv(data)
 
-#сделать замеры времени
+
+
 def main():
     """
     Точка входа в программу
     """
+    #сделать замеры времени
     all_links = []
     URL = input('Введите url (наподобие https://auto.ria.com/newauto/marka-acura/) > ')
     html = get_html(URL)
@@ -105,8 +101,11 @@ def main():
     start_time = datetime.now()
     all_links = get_all_links(URL, pages_count)
     print(f'Найдено {len(all_links)} страниц(ы).')
-    with Pool(20) as p:
-        p.map(make_all, all_links)
+    for url in all_links:
+        html = get_html(url)
+        print('Парсим страницу...')
+        data = get_page_data(html)
+        write_csv(data)
     end_time = datetime.now()
     print('Затрачено времени ' + str(end_time - start_time))
     subprocess.call(['libreoffice', '--calc', 'cars.csv'])
