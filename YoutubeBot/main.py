@@ -18,7 +18,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from config import TOKEN
 
 logging.basicConfig(filename='bot.log',
-                    format='%(ascitime)s - %(name)s - %(levelname)s -%(message)s',
+                    format='%(asctime)s - %(name)s - %(levelname)s -%(message)s',
                     level=logging.INFO)
 
 def normalize_special_char(txt):
@@ -56,7 +56,7 @@ def download(title, video_url):
         'format': 'bestaudio/best', 
         #указываем параметры сжатия аудио
         'postprocessors':[{
-            'key': 'FFMpegExtractAudio',
+            'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
@@ -64,21 +64,27 @@ def download(title, video_url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([video_url])
     return {
-        'audio': open(title + 'mp3', 'rb'),
+        'audio': open(title + '.mp3', 'rb'),
         'title': title,
         }        
 
 
-def music():
+def music(bot, update):
     """
     Функция которая грабит музыку
     """
+    title, video_url = search_youtube(update.message.text)
+    update.message.reply_text('Starting download ' + title)
+    music_dict = download(title, video_url)
+    update.message.reply_text('Converting to mp3 ' + title)
+    update.message.reply_audio(**music_dict, timeout=9999)
+    os.remove(title + '.mp3')
 
 def main():
     """
     Точка входа в программу - функция main()
     """
-    updater = Updater(TOKEN, use_context=True)
+    updater = Updater(TOKEN)
     dispatch = updater.dispatcher
     dispatch.add_handler(CommandHandler('start', start))
     dispatch.add_handler(MessageHandler(Filters.text, music))
