@@ -18,7 +18,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from config import TOKEN
 
 logging.basicConfig(filename='bot.log',
-                    format='%(ascitime)s - %(name)% - %(levelname)s -%(message)s',
+                    format='%(ascitime)s - %(name)s - %(levelname)s -%(message)s',
                     level=logging.INFO)
 
 def normalize_special_char(txt):
@@ -51,7 +51,22 @@ def download(title, video_url):
     """
     Функция загружает данные с ютуба
     """
-    
+    ydl_opts = {
+        'outtmpl': '{}.%(ext)s'.format(title),
+        'format': 'bestaudio/best', 
+        #указываем параметры сжатия аудио
+        'postprocessors':[{
+            'key': 'FFMpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([video_url])
+    return {
+        'audio': open(title + 'mp3', 'rb'),
+        'title': title,
+        }        
 
 
 def music():
