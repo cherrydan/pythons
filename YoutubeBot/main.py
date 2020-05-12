@@ -31,6 +31,29 @@ def start(bot, update):
     """
     Реакция на нажатие кнопки старт
     """
+    update.message.reply_text('Youtube Music Downloader')
+
+def search_youtube(text):
+    """
+    Функция ищет данные по заданному ключу на Ютубе
+    """
+    url = 'https://youtube.com'
+    #формируем запрос url
+    response = requests.get(url + '/results', params={'search_query': text})
+    soup = BeautifulSoup(response.content, 'html.parser')
+    #забираем теги с Ютуба
+    for tag in soup.find_all('a', {'rel': 'spf-prefetch'}):
+        title, video_url = tag.text, url + tag['href']
+        if 'gogleads' not in video_url:
+            return normalize_special_char(title), video_url
+
+def download(title, video_url):
+    """
+    Функция загружает данные с ютуба
+    """
+    
+
+
 def music():
     """
     Функция которая грабит музыку
