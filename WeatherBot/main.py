@@ -5,6 +5,8 @@
 Бот-погодник, в зависимости от наших координат,
 которые передаютя боту.
 
+На vps поменять #/usr/bin/python3
+
 @author danny
 """
 import logging
@@ -17,6 +19,18 @@ logging.basicConfig(filename='bot.log',
                     level=logging.INFO)
 
 BOT = TeleBot(TOKEN)
+
+@BOT.message_handler(content_types=['location'])
+def location(message):
+    """
+    Обрабатываем полученую локацию
+    """
+    if message.location is not None:
+        text = f'location latitude {str(message.location.latitude)}\n'
+        text += f'location longitude {str(message.location.longitude)}'
+        BOT.send_message(message.chat.id, text)
+
+
 
 @BOT.message_handler(commands=["geo"])
 def geophone(message):
