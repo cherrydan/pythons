@@ -12,7 +12,9 @@
 import logging
 from telebot import TeleBot
 from telebot import types
+import requests
 from config import TOKEN, API_KEY
+
 
 logging.basicConfig(filename='bot.log',
                     format='%(asctime)s - %(name)s - %(levelname)s -%(message)s',
@@ -32,7 +34,8 @@ def get_weather(lat, lon):
     url = weather_url + '?lat=' + str(lat)
     url += '&lon=' + str(lon)
     url += '&appid=' + API_KEY
-    return url
+    response = requests.get(url)
+    return response.json()
 
 
 
@@ -42,8 +45,10 @@ def location(message):
     Обрабатываем полученую локацию
     """
     if message.location is not None:
-        text = get_weather(message.location.latitude, message.location.longitude)
-        BOT.send_message(message.chat.id, text)
+        data = get_weather(message.location.latitude, message.location.longitude)
+        print(data)
+    else:
+        BOT.send_message(message.chat.id, 'Локация не передана!')
 
 
 
