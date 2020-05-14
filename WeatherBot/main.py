@@ -24,6 +24,9 @@ def get_weather(lat, lon):
     """
     Функция которая по переданной локации получает погоду с сайта
     openweather.com
+    1. Формируем url запроса и тестируем его пока в браузере
+    2. Если всё пучком, то, делаем get-запрос по этому url
+    3. Смотрим, что он нам там отдал в текстовом формате (по идее должен быть json)
     """
     weather_url = 'https://api.openweathermap.org/data/2.5/weather'
     url = weather_url + '?lat=' + '{' + str(lat) + '}'
