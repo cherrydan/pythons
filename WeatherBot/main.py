@@ -46,7 +46,15 @@ def location(message):
     """
     if message.location is not None:
         data = get_weather(message.location.latitude, message.location.longitude)
-        print(data)
+        for item in data['weather']:
+            if item['main'] == 'Clear':
+                text = 'На улице безоблачно, зонтик можно оставить дома!'
+            elif item['main'] == 'Clouds':
+                text = 'На улице облачно, лучше взять с собой зонтик!'
+            elif item['main'] == 'Rain':
+                text = 'На улице дождь! Обязательно нужно взять с собой зонтик!'
+        BOT.send_message(message.chat.id, text)
+
     else:
         BOT.send_message(message.chat.id, 'Локация не передана!')
 
