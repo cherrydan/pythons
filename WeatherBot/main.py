@@ -29,9 +29,9 @@ def get_weather(lat, lon):
     3. Смотрим, что он нам там отдал в текстовом формате (по идее должен быть json)
     """
     weather_url = 'https://api.openweathermap.org/data/2.5/weather'
-    url = weather_url + '?lat=' + '{' + str(lat) + '}'
-    url += '&lon=' + '{' + str(lon) + '}'
-    url += '&appid=' + '{' + API_KEY + '}'
+    url = weather_url + '?lat=' + str(lat)
+    url += '&lon=' + str(lon)
+    url += '&appid=' + API_KEY
     return url
 
 
