@@ -13,7 +13,7 @@ import logging
 from telebot import TeleBot
 from telebot import types
 import requests
-from config import TOKEN, API_KEY
+from config import TOKEN, API_KEY, EMOJI
 
 
 logging.basicConfig(filename='bot.log',
@@ -48,11 +48,11 @@ def location(message):
         data = get_weather(message.location.latitude, message.location.longitude)
         for item in data['weather']:
             if item['main'] == 'Clear':
-                text = 'На улице безоблачно, зонтик можно оставить дома!'
+                text = 'На улице безоблачно, зонтик можно оставить дома!' + EMOJI['clear']
             elif item['main'] == 'Clouds':
-                text = 'На улице облачно, лучше взять с собой зонтик!'
+                text = 'На улице облачно, лучше взять с собой зонтик!' + EMOJI['cloudly']
             elif item['main'] == 'Rain':
-                text = 'На улице дождь! Обязательно нужно взять с собой зонтик!'
+                text = 'На улице дождь! Обязательно нужно взять с собой зонтик!' + EMOJI['rainy']
         BOT.send_message(message.chat.id, text)
 
     else:
