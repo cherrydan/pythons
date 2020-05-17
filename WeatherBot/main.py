@@ -48,11 +48,12 @@ def location(message):
         data = get_weather(message.location.latitude, message.location.longitude)
         for item in data['weather']:
             if item['main'] == 'Clear':
-                text = 'На улице безоблачно, зонтик можно оставить дома!' + EMOJI['clear']
+                text = 'На улице безоблачно,' + EMOJI['clear'] + ' зонтик можно оставить дома!'
             elif item['main'] == 'Clouds':
-                text = 'На улице облачно, лучше взять с собой зонтик!' + EMOJI['cloudly']
+                text = 'На улице облачно,' + EMOJI['cloudly'] + 'лучше взять с собой зонтик!'
             elif item['main'] == 'Rain':
-                text = 'На улице дождь! Обязательно нужно взять с собой зонтик!' + EMOJI['rainy']
+                text = 'На улице дождь!' + EMOJI['rainy']
+                text += ' Обязательно нужно взять с собой зонтик!'
         BOT.send_message(message.chat.id, text)
 
     else:
