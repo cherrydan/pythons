@@ -13,6 +13,43 @@
 """
 import socket
 
+URLS = {
+    '/': 'hello index',
+    '/blog': 'hello blog'
+}
+
+
+def parse_request(request):
+    """
+    Распарсиваем запрос
+    """
+    parsed = request.split(' ')
+    method = parsed[0]
+    url = parsed[1]
+    return (method, url)
+
+
+def generate_headers(method, url):
+    """
+    Генерирует заголовки, без которых не может хром
+    """
+    if not method == 'GET':
+        return ('HTTP/1.1 405 Method not allowed\n\n', 405)
+
+    if url not in URLS:
+        return ('HTTP/1.1 404 Page not found\n\n', 404)
+
+    return ('HTTP/1.1 200 OK\n\n', 200)
+
+
+def generate_response(request):
+    """
+    Получаем ответ по нашему запросу
+    """
+    method, url = parse_request(request)  # вызываем фцию распарсивающую запрос
+    headers, code = generate_headers(method, url)
+    return (headers + 'hello, world').encode()
+
 
 def run():
     """
@@ -31,11 +68,14 @@ def run():
         client_socket, addr = server_socket.accept()
         # смотрим данные
         request = client_socket.recv(1024)  # лимит в байтах
-        print(request.decode('utf-8'))
+        print(request)
         print()
         print(addr)
+
+        response = generate_response(request.decode('utf-8'))
+
         # отправляем в ответ Hello, world
-        client_socket.sendall('Hello, world!'.encode())
+        client_socket.sendall(response)
         # обязательно надо закрывать соединение
         client_socket.close()
 
