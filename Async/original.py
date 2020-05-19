@@ -34,6 +34,8 @@ def run():
             else:
                 response = 'Hello, world!\n'.encode()
                 client_socket.send(response)
+        print('Outside inner while loop')
+        client_socket.close()
 
 
 if __name__ == '__main__':
