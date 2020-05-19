@@ -12,10 +12,11 @@
     Пара IP-адрес и порт называется сокет
 """
 import socket
-
+from views import *
+# урлам сопоставляем функцию, которая выводит шаблон страницы
 URLS = {
-    '/': 'hello index',
-    '/blog': 'hello blog'
+    '/': index,
+    '/blog': blog
 }
 
 
@@ -42,13 +43,25 @@ def generate_headers(method, url):
     return ('HTTP/1.1 200 OK\n\n', 200)
 
 
+def generate_content(code, url):
+    """
+    Функция генерирует тело страницы
+    """
+    if code == 404:
+        return "<h1>404</h1><p>Page not found</p>"
+    elif code == 405:
+        return "<h1>405</h1><p>Method not allowed</p>"
+    return URLS[url]()  # вызыввем функции из словаря URLS
+
+
 def generate_response(request):
     """
     Получаем ответ по нашему запросу
     """
     method, url = parse_request(request)  # вызываем фцию распарсивающую запрос
     headers, code = generate_headers(method, url)
-    return (headers + 'hello, world').encode()
+    body = generate_content(code, url)
+    return (headers + body).encode()
 
 
 def run():
