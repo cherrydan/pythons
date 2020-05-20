@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
-This program couts wowels in word
+This program displays wowels in word
 '''
 VOWELS = ['a', 'o', 'u', 'i', 'e']
 FOUND = []

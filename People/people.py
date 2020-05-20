@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from pprint import pprint
 # создаём словарь словарей
 people = {}
 
@@ -32,4 +32,4 @@ people['Robot'] = {
     'Home Planet': 'Unknown'
 }
 
-print(people)
+pprint(people)
