@@ -50,12 +50,13 @@ def get_ffprobe_output(filename):
     brackets = re.compile(PATTERN)
     if brackets.findall(filename):
         print('Имена файлов содержат недопустимые символы')
-        fullname = filename.split('/')
-        print(fullname)
+        print('Скорее всего это круглая скобка')
+        print('Переименуйте файлы или папку без участия этих символов')
+        print('И запустите еще раз')
         exit(-1)
-    else:
-        # команда для выполнения
-        cmd = 'ffprobe -i {} -show_entries format=duration -v quiet -of csv="p=0"'.format(filename)
+
+    # команда для выполнения
+    cmd = 'ffprobe -i {} -show_entries format=duration -v quiet -of csv="p=0"'.format(filename)
     # создаем подпроцесс при помощи класса popen
     # shell=False предохраняет нашу программу от иньекций извне
     # также перенаправляем вывод
