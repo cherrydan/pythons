@@ -3,15 +3,21 @@
 """
 Программа показывает длительность видеороликов в формате
 mp4.
+# Надо исправить баг с именами файлов
+
 @author: Олег Молчанов
 """
 import os
 from subprocess import Popen, PIPE, STDOUT
 from sys import exit
 from datetime import timedelta
+import re
 
 # доступные нам расширения видеофайлов
 VIDEO_EXTENSIONS = ['avi', 'mp4', 'mkv']
+
+# шаблон регулярного выражения
+PATTERN = '[()]'
 
 
 def get_videos():
@@ -40,10 +46,16 @@ def get_ffprobe_output(filename):
     # заменяем пробелы на экранированные пробелы
     # чтобы не мешать команде ffprobe
     filename = filename.replace(' ', r'\ ')
-    filename = filename.replace('(', ' ')
-    filename = filename.replace(')', ' ')
-    # команда для выполнения
-    cmd = 'ffprobe -i {} -show_entries format=duration -v quiet -of csv="p=0"'.format(filename)
+    # проверяем на наличие скобок
+    brackets = re.compile(PATTERN)
+    if brackets.findall(filename):
+        print('Имена файлов содержат недопустимые символы')
+        fullname = filename.split('/')
+        print(fullname)
+        exit(-1)
+    else:
+        # команда для выполнения
+        cmd = 'ffprobe -i {} -show_entries format=duration -v quiet -of csv="p=0"'.format(filename)
     # создаем подпроцесс при помощи класса popen
     # shell=False предохраняет нашу программу от иньекций извне
     # также перенаправляем вывод
