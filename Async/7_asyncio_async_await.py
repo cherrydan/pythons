@@ -1,5 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
+"""
+Корутины для версии Питона ниже 3.5
+"""
 
 import asyncio
 
