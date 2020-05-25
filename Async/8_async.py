@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 #################################################################
 #  Асинхронный вариант
 #
@@ -9,11 +9,13 @@ import asyncio
 import aiohttp
 from time import time
 
+
 #  Единственная синхронная функция
 def write_image(data):
     filename = 'file-{}.jpg'.format(int(time()*1000))
     with open(filename, 'wb') as FILE:
         FILE.write(data)
+
 
 async def fetch_content(url, session):
     """
