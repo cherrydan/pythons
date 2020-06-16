@@ -54,6 +54,8 @@ def location(message):
             elif item['main'] == 'Rain':
                 text = 'На улице дождь!' + EMOJI['rainy']
                 text += ' Обязательно нужно взять с собой зонтик!'
+            else:
+                text = 'Что-то там странное за окном! Может шторм, гроза, или землетрясение!' 
         BOT.send_message(message.chat.id, text)
 
     else:
