@@ -17,14 +17,15 @@ def hanoi(n, i, k):
     if n == 1:
         print('Перемещаем диск 1 со стержня {} на стержень {}'.format(i,k))
     else:
-        tmp= 6-i-k
+        tmp = 6-i-k #инвариант
         hanoi(n-1, i, tmp)
         print('Перемещаем диск {} со стержня {} на стержень {}'.format(n,i,k))
         hanoi(n-1, tmp, k)
 
 
 def main():
-    hanoi(3,1,2)
+    d = int(input('Введите количество дисков башни ->' ))
+    hanoi(d,1,2)
 
 if __name__ == '__main__':
     main()
