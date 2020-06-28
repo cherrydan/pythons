@@ -13,12 +13,14 @@ def capitalize(s, ind):
 
 
 def capitalize2(s, ind):
+    a_str = []
     for i in range(len(s)):
         if i + 1 not in ind:
-            print(s[i], sep='', end='')
+            a_str.append(s[i])
         else:
-            print(s[i].upper(), sep='', end='')
-    print()
+            a_str.append(s[i].upper())
+    r_str = ''.join(a_str)
+    return r_str
 
 
 def main():
@@ -28,7 +30,7 @@ def main():
         print('Такого индекса не существует!')
         sys.exit()
     capitalize(s, int(pos))
-    capitalize2(s, [1, 2, 4])
+    print(capitalize2(s, [1, 2, 4]))
 
 
 if __name__ == '__main__':
