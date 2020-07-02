@@ -3,7 +3,7 @@ Created on 22 авг. 2018 г.
 Демонастрашка библиотеки Python Game
 @author: В.А.Перлин
 '''
-#!usr/bin/env python3
+#!/usr/bin/env python
 #!-*- coding:utf-8 -*-
 
 import sys, pygame
@@ -14,6 +14,7 @@ import numpy as np
 
 pygame.init()
 
+print('Для управлением скоростью используйте клавиши-стрелки "вверх-вниз"')
 #размер окна
 size = width, height = 640, 480
 
@@ -43,8 +44,12 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        elif event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
             speed *= 1.1
+        # попробую сделать замедление шарика
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            speed /= 1.1
+
 
     t = pygame.time.get_ticks()
     T, t = t, (t-T)/1000
