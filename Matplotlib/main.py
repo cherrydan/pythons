@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import matplotlib.pyplot as plt
 
 X = [590, 540, 740, 130, 810, 300, 320, 230, 470, 620, 770, 250]
