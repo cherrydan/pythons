@@ -2,9 +2,11 @@
 *.txt
 *.jpg
 *.*.save
-/__pycache_
+/__pycache__
 /Parsing/*.py.swp
 /Parsing/*.png
 /Beersong/*.py.swp
 .gitignore
-
+*.spec
+/home/danny/Dropbox/Programming/pythons/PyMySQLDemo/Tk/build/
+/home/danny/Dropbox/Programming/pythons/PyMySQLDemo/Tk/dist/
