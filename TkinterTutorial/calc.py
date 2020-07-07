@@ -20,13 +20,13 @@ class Calc:
         self.b_mult = Button(master, text='*')
         self.b_div = Button(master, text='/')
         self.l = Label(master, bg='black', fg='green', width=20)
-        self.val_1.pack()
-        self.val_2.pack()
-        self.b_plus.pack()
-        self.b_minus.pack()
-        self.b_mult.pack()
-        self.b_div.pack()
-        self.l.pack()
+        self.val_1.pack(side=LEFT, padx = 5, pady = 5)
+        self.val_2.pack(side = RIGHT, padx = 5, pady = 5)
+        self.b_plus.pack(side = BOTTOM, padx = 5, pady = 5)
+        self.b_minus.pack(side = BOTTOM, padx = 5, pady = 5)
+        self.b_mult.pack(side = BOTTOM, padx = 5, pady = 5)
+        self.b_div.pack(side = BOTTOM, padx = 5, pady = 5)
+        self.l.pack(side=TOP, padx = 5, pady = 5, expand = True)
 
         # устанавливаем кнопку на обработчик
     def setFunc(self, func):
