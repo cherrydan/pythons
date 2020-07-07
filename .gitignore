@@ -1,6 +1,7 @@
 /.metadata
 *.txt
 *.jpg
+*.*.save
 /__pycache_
 /Parsing/*.py.swp
 /Parsing/*.png
