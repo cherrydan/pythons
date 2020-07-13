@@ -9,6 +9,7 @@
 
 from tkinter import *
 
+
 def main():
     root = Tk()
     # создаём верхнюю область

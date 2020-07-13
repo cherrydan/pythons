@@ -5,8 +5,9 @@ from tkinter import *
 
 root = Tk()
 
-b1 = Button(text='Change', width = 15, height = 3)
+b1 = Button(text='Change', width=15, height=3)
 b1.pack()
+
 
 # обработчик события
 def change():
@@ -15,6 +16,7 @@ def change():
     b1['activebackground'] = '#555555'
     b1['fg'] = '#FFFFFF'
     b1['activeforeground'] = '#FFFFFF'
+
 
 b1.config(command=change)
 
