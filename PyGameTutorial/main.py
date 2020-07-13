@@ -3,6 +3,7 @@
 import pygame
 import random
 from config import *
+from player import *
 
 """
     Учебник по Pygame
@@ -18,6 +19,10 @@ def main():
     pygame.display.set_caption('PyGame Tutorial')
     clock = pygame.time.Clock()
 
+    all_sprites = pygame.sprite.Group()
+    player = Player()
+    all_sprites.add(player)
+
     # цикл игры
     running = True
     while running:
@@ -29,7 +34,9 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        all_sprites.update()
         screen.fill(BLACK) # отрисовка экрана
+        all_sprites.draw(screen)
         pygame.display.flip() # переворот экрана
 
     pygame.quit()

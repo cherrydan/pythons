@@ -7,7 +7,7 @@ c сайта https://pythonru.com/uroki/biblioteka-pygame-chast-1-vvedenie
 """
 
 # размер окна
-WIDTH = 360
+WIDTH = 640
 HEIGHT = 480
 
 # частота обновления
