@@ -27,7 +27,7 @@ def main():
     entry_1.grid(row=0, column=1)
     entry_2.grid(row=1, column=1)
 
-    # Создаём виджет, который будет захватывать облсать двух колонок
+    # Создаём виджет, который будет захватывать облаcть двух колонок
     c = Checkbutton(root, text='Остаться в системе')
     c.grid(columnspan=2)
 
