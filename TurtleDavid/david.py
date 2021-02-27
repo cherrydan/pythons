@@ -13,6 +13,7 @@ turtle
 import turtle
 
 
+
 def david():
     for step in range(6):
         turtle.begin_fill()
