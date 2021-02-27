@@ -13,12 +13,14 @@ from unicodedata import normalize
 import requests
 import youtube_dl
 from bs4 import BeautifulSoup
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import Update, Bot
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from config import TOKEN
 
 logging.basicConfig(filename='bot.log',
                     format='%(asctime)s - %(name)s - %(levelname)s -%(message)s',
                     level=logging.INFO)
+
 
 def normalize_special_char(txt):
     """
@@ -26,11 +28,13 @@ def normalize_special_char(txt):
     """
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
+
 def start(bot, update):
     """
     Реакция на нажатие кнопки старт
     """
     update.message.reply_text('Youtube Music Downloader')
+
 
 def search_youtube(text):
     """
@@ -45,6 +49,7 @@ def search_youtube(text):
         title, video_url = tag.text, url + tag['href']
         if 'gogleads' not in video_url:
             return normalize_special_char(title), video_url
+
 
 def download(title, video_url):
     """
@@ -65,7 +70,7 @@ def download(title, video_url):
     return {
         'audio': open(title + '.mp3', 'rb'),
         'title': title,
-        }        
+        }   
 
 
 def music(bot, update):
@@ -83,7 +88,8 @@ def main():
     """
     Точка входа в программу - функция main()
     """
-    updater = Updater(TOKEN)
+    
+    updater = Updater(TOKEN, use_context=True)
     dispatch = updater.dispatcher
     dispatch.add_handler(CommandHandler('start', start))
     dispatch.add_handler(MessageHandler(Filters.text, music))

@@ -1,0 +1,54 @@
+2020-08-10 10:49:08,731 - telegram.ext.dispatcher - ERROR -No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "./main3.py", line 72, in music
+    title, video_url = search_youtube(update.message.text)
+  File "./main3.py", line 41, in search_youtube
+    yt = pytube.Youtube(text)
+AttributeError: module 'pytube' has no attribute 'Youtube'
+2020-08-10 10:52:07,416 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 10:52:07,927 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-10 10:53:11,262 - telegram.ext.dispatcher - ERROR -No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "./main3.py", line 72, in music
+    title, video_url = search_youtube(update.message.text)
+  File "./main3.py", line 41, in search_youtube
+    yt = pytube.Youtube(text)
+AttributeError: module 'pytube' has no attribute 'Youtube'
+2020-08-10 10:53:56,331 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 10:53:56,942 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-10 11:20:17,444 - telegram.ext.dispatcher - ERROR -No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "./main2.py", line 77, in music
+    title, video_url = search_youtube(update.message.text)
+TypeError: cannot unpack non-iterable NoneType object
+2020-08-10 11:23:42,781 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 11:23:43,345 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-10 11:24:43,272 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 11:24:43,695 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-10 11:27:33,712 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 11:27:34,291 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-10 17:51:32,124 - telegram.ext.dispatcher - ERROR -No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/danny/Dropbox/Programming/pythons/Env/env/lib64/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "./main2.py", line 76, in music
+    video_url, title = search_youtube(update.message.text)
+TypeError: cannot unpack non-iterable NoneType object
+2020-08-10 17:56:58,782 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-10 17:56:59,475 - telegram.ext.updater - WARNING -Exiting immediately!
+2020-08-13 10:34:05,794 - telegram.ext.updater - INFO -Received signal 2 (SIGINT), stopping...
+2020-08-13 10:34:06,685 - telegram.ext.updater - WARNING -Exiting immediately!

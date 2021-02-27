@@ -1,52 +1,54 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
+"""
 
 Parser for site auto.ria.com, new auto
 title, usd_price, uah_price, link, fuel, telephone
-'''
+"""
 
-
-#module for make csv file
+# module for make csv file
 import csv
 
-#module for running LibreOffice Calc
+# module for running LibreOffice Calc
 import subprocess
 
-#for time-checking importing module datetime
+# for time-checking importing module datetime
 from datetime import datetime
 
-#importing Beautiful Soup library
+# importing Beautiful Soup library
 from bs4 import BeautifulSoup
 
-#importing requests library
+# importing requests library
 import requests
 
-
-#importing progress-bar drawing library
+# importing progress-bar drawing library
 from progress.bar import IncrementalBar
 
-#importing selenium for lauhching browser
+# importing selenium for lauhching browser
 from selenium import webdriver
 
 # base url of cars
 URL = 'https://auto.ria.com/newauto/marka-lexus/'
 
-#short url of cars
+# short url of cars
 S_URL = 'https://auto.ria.com'
 
 # anti-blocking protection
-HEADERS = {'user-agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36',
-           'accept': '*/*'}
+HEADERS = {
+    'user-agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36',
+    'accept': '*/*'}
 
-#filename for csv-file
+# filename for csv-file
 FILE = 'cars.csv'
+
+
 def get_html(url, params=None):
     """
     get_html(url, params=None) returns a request-obj giving url and params
     """
     request = requests.get(url, headers=HEADERS, params=params)
     return request
+
 
 def get_pages_count(html):
     """
@@ -57,8 +59,9 @@ def get_pages_count(html):
     soup = BeautifulSoup(html, 'html.parser')
     pagination = soup.find_all('span', class_='mhide')
     if pagination:
-        return int(pagination[-1].get_text()) # gets last element of pagination array
+        return int(pagination[-1].get_text())  # gets last element of pagination array
     return 1
+
 
 def get_telephone_number(link):
     """
@@ -68,17 +71,18 @@ def get_telephone_number(link):
     clicks on it, and grab the telefone number as text
     returns text-object
     """
-    #попробуем запустить хром в безголовом режиме
+    # попробуем запустить хром в безголовом режиме
     chrome_options = webdriver.ChromeOptions()
-    #запускаем браузер в безголовом режиме
-    chrome_options.headless = True#
+    # запускаем браузер в безголовом режиме
+    chrome_options.headless = True  #
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(link)
     button = driver.find_element_by_xpath('//span[@class="show-phone-btn dotted"]')
     button.click()
-    #time.sleep(1)
+    # time.sleep(1)
     phone_number = button.find_element_by_xpath('//a[@class="phone unlink bold proven"]').text
     return phone_number
+
 
 def get_content(html):
     """
@@ -97,7 +101,7 @@ def get_content(html):
         else:
             uah_price = 'Цена в гривнах не определена'
 
-        title = item.find('strong').get_text(strip=True) #strip = обрезает лишние пробелы
+        title = item.find('strong').get_text(strip=True)  # strip = обрезает лишние пробелы
         usd_price = item.find('span', class_='green bold size18').get_text(strip=True)
         link = S_URL + item.find('a').get('href')
         fuel = item.find('span', class_='size13').get_text()
@@ -126,6 +130,7 @@ def get_content(html):
     prog_bar.finish()
     return cars
 
+
 def save_file(items, path):
     """
     save_file save all data from dictionary to csv-file format
@@ -137,7 +142,8 @@ def save_file(items, path):
 
         for item in items:
             writer.writerow([item['title'], item['usd_price'], item['uah_price'],
-                             item['link'], item['fuel'], item['city'], item['telephone'],])
+                             item['link'], item['fuel'], item['city'], item['telephone'], ])
+
 
 def parse():
     """
@@ -150,7 +156,7 @@ def parse():
     cars = []
     if html.status_code == 200:
         pages_count = get_pages_count(html.text)
-        for page in range(1, pages_count +1):
+        for page in range(1, pages_count + 1):
             print(f'Парсинг страницы {page} из {pages_count}')
             cars.extend(get_content(html.text))
         save_file(cars, 'cars.csv')
@@ -164,5 +170,6 @@ def parse():
         subprocess.call(['libreoffice', '--calc', FILE])
     else:
         print('Error')
+
 
 parse()
