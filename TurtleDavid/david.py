@@ -13,7 +13,6 @@ turtle
 import turtle
 
 
-
 def david():
     for step in range(6):
         turtle.begin_fill()
@@ -38,4 +37,5 @@ turtle.hideturtle()
 turtle.backward(200)
 
 david()
-input('Press any key...')
+
+turtle.exitonclick()
