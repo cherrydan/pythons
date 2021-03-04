@@ -12,7 +12,7 @@ def hello() -> str:
     return "<h1> Hello world from Flask!</h1>"
 
 
-@app.route('/search4')
+@app.route('/search4', methods=['POST'])
 def do_search() -> str:
     return str(vsearch.search4letters('life, the universe and everything', repr('eiru,!')))
 
