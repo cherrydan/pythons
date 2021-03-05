@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 import vsearch
 
@@ -14,7 +14,10 @@ def hello() -> str:
 
 @app.route('/search4', methods=['POST'])
 def do_search() -> str:
-    return str(vsearch.search4letters('life, the universe and everything', repr('eiru,!')))
+    phrase = request.form['phrase']
+    letters = request.form['letters']
+
+    return str(vsearch.search4letters(phrase, letters))
 
 
 @app.route('/entry')
@@ -23,4 +26,4 @@ def entry_page() -> 'html':
                            the_title='Welcome to search4letters on the Web!')
 
 
-app.run()
+app.run(debug=True)
