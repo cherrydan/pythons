@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="875130af-c3cf-418c-8925-e44e625d3214" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../SearchWowels/webvowels/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SearchWowels/webvowels/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SearchWowels/webvowels/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SearchWowels/webvowels/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SearchWowels/webvowels/.idea/webvowels.iml" afterDir="false" />
-    </list>
+    <list default="true" id="875130af-c3cf-418c-8925-e44e625d3214" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +18,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HumanReadableTime" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
