@@ -4,9 +4,10 @@
 Также удаляем файл в корзину при помощи библиотеки send2send2trash
 
 '''
-import os, send2trash
+import os
+import send2trash
 
-baconFile = open('bacon.txt','a')
+baconFile = open('bacon.txt', 'a')
 
 baconFile.write('Bacon is not a vegitable')
 
@@ -20,7 +21,6 @@ uPath = ""
 
 uPath = input('Введите путь к файлам, которые нужно пройти: ')
 
-
 for folderName, subFolders, fileNames in os.walk(uPath):
     print('Текущая папка - ' + folderName)
 
@@ -30,7 +30,6 @@ for folderName, subFolders, fileNames in os.walk(uPath):
     for filename in fileNames:
         print('ФАЙЛ В ПАПКЕ ' + folderName + ': ' + filename)
         counter += 1
-
 
 print('')
 print('Всего файлов пройдено: ' + str(counter))

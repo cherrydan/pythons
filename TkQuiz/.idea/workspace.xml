@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HumanReadableTime/.idea/HumanReadableTime.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HumanReadableTime/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HumanReadableTime/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HumanReadableTime/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HumanReadableTime/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/TkQuiz.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HumanReadableTime/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HumanReadableTime/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Matplotlib/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Matplotlib/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PrintPi/src/qt_printPi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PrintPi/src/qt_printPi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/TreeWalk.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Graph/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Graph/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SquareEveryDigit/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../SquareEveryDigit/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TkinterTutorial/calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TkinterTutorial/calc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Trajectories/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Trajectories/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TreeWalk/treewalk.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TreeWalk/treewalk.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

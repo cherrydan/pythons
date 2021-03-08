@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! python3
 # -*- coding: utf-8 -*-
 
 def square_every_digit(n):
@@ -9,7 +9,8 @@ def square_every_digit(n):
     arr = []
     str_n = str(n)
     for num in str_n:
-        arr.append(str(int(num)**2))
+        arr.append(str(int(num) ** 2))
     return int(''.join(arr))
+
 
 print(square_every_digit(9119))
