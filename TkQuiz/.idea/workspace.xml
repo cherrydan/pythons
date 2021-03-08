@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/TreeWalk.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeWalk/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Graph/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Graph/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SquareEveryDigit/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../SquareEveryDigit/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TkinterTutorial/calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TkinterTutorial/calc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trajectories/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Trajectories/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TreeWalk/treewalk.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TreeWalk/treewalk.py" afterDir="false" />
-    </list>
+    <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="урок от айтигенио, прочие переделки" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +58,14 @@
       <option name="presentableId" value="Default" />
       <updated>1615191204317</updated>
     </task>
+    <task id="LOCAL-00001" summary="урок от айтигенио, прочие переделки">
+      <created>1615215165251</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615215165252</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,5 +79,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="урок от айтигенио, прочие переделки" />
+    <option name="LAST_COMMIT_MESSAGE" value="урок от айтигенио, прочие переделки" />
   </component>
 </project>
