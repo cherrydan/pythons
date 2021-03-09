@@ -28,17 +28,31 @@ def que_one():
 def que_two():
     question_2 = Label(root, text='Зимой и летом - одним цветом :)')
     answer_2 = Entry()
-    btn_2 = Button(root, text='Ответить!', command=lambda: game_2(que_two))
+    btn_2 = Button(root, text='Ответить!', command=lambda: game_2(que_three))
     question_2.grid()
     answer_2.grid()
     btn_2.grid()
 
     def game_2(fn):
         if answer_2.get().lower() == 'ёлка':
-            messagebox.showinfo('Победа!', 'Два верных ответа, ты молодец!')
+            fn()
         else:
             messagebox.showerror('Ошибка!', 'попробуй еще раз!!')
 
+
+def que_three():
+    question_3 = Label(root, text='Сто одёжек - и все без застёжек :)')
+    answer_3 = Entry()
+    btn_3 = Button(root, text='Ответить!', command=lambda: game_3(que_three))
+    question_3.grid()
+    answer_3.grid()
+    btn_3.grid()
+
+    def game_3(fn):
+        if answer_3.get().lower() == 'капуста':
+            messagebox.showinfo('Победа!', 'Три верных ответа, ты молодец!')
+        else:
+            messagebox.showerror('Ошибка!', 'попробуй еще раз!!')
 
 
 if __name__ == '__main__':
