@@ -56,7 +56,7 @@ while True:
 
     pos += speed * t
 
-    ballrect.center = tuple(np.array(pos, dtype=np.int))
+    ballrect.center = tuple(np.array(pos, dtype=int))
 
     #отслеживаем ударения шарика от краев экрана
     if ballrect.left < 0 or ballrect.right > width:
