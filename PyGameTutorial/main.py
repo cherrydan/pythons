@@ -12,9 +12,10 @@ from player import *
 
 """
 
+
 def main():
     pygame.init()
-    pygame.mixer.init() # инициализация звука
+    pygame.mixer.init()  # инициализация звука
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption('PyGame Tutorial')
     clock = pygame.time.Clock()
@@ -35,9 +36,9 @@ def main():
                 running = False
 
         all_sprites.update()
-        screen.fill(BLACK) # отрисовка экрана
+        screen.fill(BLACK)  # отрисовка экрана
         all_sprites.draw(screen)
-        pygame.display.flip() # переворот экрана
+        pygame.display.flip()  # переворот экрана
 
     pygame.quit()
 

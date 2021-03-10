@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="урок от айтигенио, добавил ещё один вопрос" />
+    <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="урок от айтигенио, добавил ещё один вопрос">
+      <change beforePath="$PROJECT_DIR$/../PyGameSnake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PySnake/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PySnake/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
