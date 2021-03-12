@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c924ed92-acde-4ce0-bc2b-9a7716e3054f" name="Default Changelist" comment="урок от айтигенио, добавил ещё один вопрос">
-      <change beforePath="$PROJECT_DIR$/../PyGameSnake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PySnake/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PySnake/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Eric Matiz/Lists/.lst_guests_no_table.py.swp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +21,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PyGameDemo/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
